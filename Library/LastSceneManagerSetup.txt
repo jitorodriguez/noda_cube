@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/thiu.unity
+  isLoaded: 1
+  isActive: 1
