@@ -25,8 +25,16 @@ public class RayCaster : MonoBehaviour {
 				Debug.Log ("You hit");
 
 				if (hit.collider.gameObject.CompareTag("node")) {
-					Debug.Log ("You hit again!");
-				hit.collider.gameObject.GetComponent<Renderer>().material.color = Color.green;
+					GameObject noder = hit.collider.gameObject;
+
+					if (noder.GetComponent<Renderer> ().material.color == Color.green) {
+						
+						noder.GetComponent<Renderer> ().material.color = Color.white;
+
+					} else {
+						noder.GetComponent<Renderer>().material.color = Color.green;
+					}
+
 				}
 			}
 		
