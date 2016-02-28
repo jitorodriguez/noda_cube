@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class RayCaster : MonoBehaviour {
 
-    public GameObject mainCube;
-
+    public List<GameObject> list = new List<GameObject>(1);
 	Transform Effect;
 	RaycastHit hit;
 	public float multiplier = 10f;
@@ -32,32 +31,16 @@ public class RayCaster : MonoBehaviour {
 				if (hit.collider.gameObject.CompareTag("node")) {
 					GameObject noder = hit.collider.gameObject;
 
-                    //LINE RENDERER???
-                    /* Temporary Plan to incorporate node relationship with Raycaster
-                    if(noder.power == false)
+                    if (noder.GetComponent<Renderer> ().material.color == Color.green)
                     {
-                        //Check nodes connected by wire of current node
-                           for all nodes in question connected by a wire
-                           {
-                           --- if checked node is on
-                               {
-                           --- --- noder.power == true;
-                           --- --- wire in question.power == true; EVENT HANDLER: Wire script must turn on node
-                                    continue;                      *ASSUMING ONLY ONE VALID OPTION*
-                               }
-                           }
-                        if noder.power == true && noder == finalnode
-                        {
-                            Run Win state();
-                        }
-                    */
 
-
-                    if (noder.GetComponent<Renderer> ().material.color == Color.green) {
-						
+                        RemoveGameObject(list, noder);
 						noder.GetComponent<Renderer> ().material.color = Color.white;
 
-					} else {
+					}
+                    else
+                    {
+                        AddGameObject(list, noder);
 						noder.GetComponent<Renderer>().material.color = Color.green;
 					}
 
@@ -67,9 +50,36 @@ public class RayCaster : MonoBehaviour {
 
 		}
 
-        else if(Input.GetMouseButtonDown(1))
-        {
-
-        }
 	}
+
+    List<GameObject> AddGameObject(List<GameObject> nodelist, GameObject obj)
+    {
+        nodelist.Add(obj);
+        return nodelist;
+    }
+
+    List<GameObject> RemoveGameObject(List<GameObject> nodelist, GameObject obj)
+    {
+        nodelist.Remove(obj);
+        return nodelist;
+    }
 }
+//LINE RENDERER???
+/* Temporary Plan to incorporate node relationship with Raycaster
+if(noder.power == false)
+{
+    //Check nodes connected by wire of current node
+       for all nodes in question connected by a wire
+       {
+       --- if checked node is on
+           {
+       --- --- noder.power == true;
+       --- --- wire in question.power == true; EVENT HANDLER: Wire script must turn on node
+                continue;                      *ASSUMING ONLY ONE VALID OPTION*
+           }
+       }
+    if noder.power == true && noder == finalnode
+    {
+        Run Win state();
+    }
+*/
