@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\NodeBehavior.cs" />
     <Compile Include="Assets\Scripts\RayCaster.cs" />
     <Compile Include="Assets\Scripts\Rotating.cs" />
+    <Compile Include="Assets\Scripts\drawLine.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
