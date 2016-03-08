@@ -42,6 +42,11 @@ public class drawLine : MonoBehaviour
         if (points.Length > 1)
         {
             lineRenderer.SetPositions(points);
+            lineRenderer.enabled = true;
+        }
+        else
+        {
+            lineRenderer.enabled = false;
         }
 
     }
@@ -50,7 +55,7 @@ public class drawLine : MonoBehaviour
     {
         Vector3[] array = new Vector3[nodes.Count];
         
-        for(int i = 0; i < nodes.Count; i++)
+        for(int i = 0; i < 3; i++)
         {
             array[i] = nodes[i].transform.position;
         }

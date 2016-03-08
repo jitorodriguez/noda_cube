@@ -12,7 +12,7 @@ public class NodeBehavior : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        nodeList = new GameObject[4];
 		float scale = cube.transform.localScale.x / 4;
 		//Vector3 newPos = Vector3(cubeOrigin.x, cubeOrigin.y, cubeOrigin.z - scale); 
 		node1.transform.localPosition = new Vector3((scale / 4), (scale / 4), (scale / 2));
