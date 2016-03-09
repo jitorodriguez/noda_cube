@@ -41,12 +41,14 @@ public class drawLine : MonoBehaviour
         Vector3[] points = GenerateArray(ray.list);
         if (points.Length > 1)
         {
+            //CreateLines(points);
             lineRenderer.SetPositions(points);
             lineRenderer.enabled = true;
         }
         else
         {
             lineRenderer.enabled = false;
+            Debug.Log("random insert");
         }
 
     }
@@ -55,12 +57,14 @@ public class drawLine : MonoBehaviour
     {
         Vector3[] array = new Vector3[nodes.Count];
         
-        for(int i = 0; i < 3; i++)
+        for(int i = 0; i < nodes.Count; i++)
         {
             array[i] = nodes[i].transform.position;
         }
         return array;
     } 
+
+    
 }
 /*if(counter < dist)
         {

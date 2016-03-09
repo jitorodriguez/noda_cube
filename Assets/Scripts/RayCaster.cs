@@ -38,13 +38,19 @@ public class RayCaster : MonoBehaviour {
                     {
 
                         RemoveGameObject(list, noder);
-						noder.GetComponent<Renderer> ().material.color = Color.white;
+                        DestroyAll();
+                        CreateLines(list);
+                        noder.GetComponent<Renderer> ().material.color = Color.white;
 
 					}
                     else
                     {
                         noder.GetComponent<Renderer>().material.color = Color.green;
-                        AddGameObject(list, noder);
+                        if(list.Count > 1)
+                        {
+                            DestroyAll();
+                        }
+                        list = AddGameObject(list, noder);
 						
 					}
 
@@ -74,14 +80,15 @@ public class RayCaster : MonoBehaviour {
     List<GameObject> AddGameObject(List<GameObject> nodelist, GameObject obj)
     {
         nodelist.Add(obj);
-        CreateLines(nodelist);
         Debug.Log("Ready to return");
+        CreateLines(nodelist);
         return nodelist;
     }
 
     List<GameObject> RemoveGameObject(List<GameObject> nodelist, GameObject obj)
     {
         nodelist.Remove(obj);
+
         return nodelist;
     }
 
@@ -109,6 +116,15 @@ public class RayCaster : MonoBehaviour {
             lines[i].GetComponent<LineRenderer>().SetPositions(new Vector3[] { points[i].transform.position, points[i + 1].transform.position });
         }
         return;
+    }
+
+    void DestroyAll()
+    {
+        lines = GameObject.FindGameObjectsWithTag("line");
+        for (int i = 0; i < lines.Length; i++)
+        {
+            Destroy(lines[i]);
+        }
     }
 
 }
